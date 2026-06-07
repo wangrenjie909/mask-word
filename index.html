@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字遮罩效果生成器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 左侧面板 -->
+    <aside id="left-panel">
+      <div class="panel-header">
+        <h1>文字遮罩效果</h1>
+        <p class="subtitle">将图片填充到文字中</p>
+      </div>
+
+      <!-- 1. 选择图片 -->
+      <div class="section-title">选择图片</div>
+      <button id="btn-select-image" class="btn-primary">浏览图片</button>
+      <div id="image-info" class="info-label">未选择图片</div>
+      <input type="file" id="file-input" accept="image/jpeg,image/png,image/bmp,image/gif,image/webp" hidden>
+
+      <!-- 2. 输入文字 -->
+      <div class="section-title">输入文字</div>
+      <input type="text" id="text-input" class="text-input" value="明媚" maxlength="20">
+
+      <!-- 3. 字体大小 -->
+      <div class="section-title">字体大小</div>
+      <input type="range" id="font-size-slider" class="slider" min="100" max="1000" value="250">
+      <div class="slider-value">当前大小: <span id="font-size-value" class="accent">250</span></div>
+
+      <!-- 4. 描边宽度 -->
+      <div class="section-title">描边宽度</div>
+      <input type="range" id="stroke-slider" class="slider" min="0" max="20" value="0">
+      <div class="slider-value">当前宽度: <span id="stroke-value" class="accent">0</span></div>
+
+      <!-- 5. 文字方向 -->
+      <div class="section-title">文字方向</div>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="direction" value="horizontal" checked> 横向
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="direction" value="vertical"> 竖向
+        </label>
+      </div>
+
+      <!-- 6. 文字位置 -->
+      <div class="section-title">文字位置</div>
+      <label class="checkbox-label">
+        <input type="checkbox" id="position-check"> 使用自定义位置
+      </label>
+
+      <div class="pos-row">
+        <span class="pos-label">X:</span>
+        <input type="range" id="x-slider" class="slider" min="-500" max="500" value="0" disabled>
+        <span id="x-value" class="accent pos-val">0</span>
+      </div>
+      <div class="pos-row">
+        <span class="pos-label">Y:</span>
+        <input type="range" id="y-slider" class="slider" min="-500" max="500" value="0" disabled>
+        <span id="y-value" class="accent pos-val">0</span>
+      </div>
+      <button id="btn-center" class="btn-secondary" disabled>居中对齐</button>
+
+      <hr class="separator">
+
+      <button id="btn-generate" class="btn-primary btn-lg">生成效果</button>
+      <button id="btn-save" class="btn-secondary btn-lg" disabled>保存图片</button>
+    </aside>
+
+    <!-- 右侧预览区 -->
+    <main id="right-panel">
+      <div class="preview-header">预览效果</div>
+      <div id="preview-area">
+        <canvas id="preview-canvas"></canvas>
+        <div id="placeholder">请选择一张图片开始</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 状态栏 -->
+  <div id="status-bar">准备就绪</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
