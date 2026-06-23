@@ -368,6 +368,31 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============================================
+// 项目成员弹窗（页面加载自动弹出）
+// ============================================
+const memberModal = $('#member-modal');
+const modalClose = $('#modal-close');
+
+// 页面加载后自动显示
+window.addEventListener('load', () => {
+  memberModal.style.display = 'flex';
+});
+
+modalClose.addEventListener('click', () => {
+  memberModal.style.display = 'none';
+});
+
+memberModal.addEventListener('click', (e) => {
+  if (e.target === memberModal) memberModal.style.display = 'none';
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && memberModal.style.display === 'flex') {
+    memberModal.style.display = 'none';
+  }
+});
+
+// ============================================
 // 初始化提示
 // ============================================
 console.log('文字遮罩效果生成器 (Web版) 已加载');
